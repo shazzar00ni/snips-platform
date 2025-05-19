@@ -1,3 +1,4 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -35,19 +36,12 @@
     --radius: 0.5rem;
 
     --sidebar-background: 0 0% 98%;
-
     --sidebar-foreground: 240 5.3% 26.1%;
-
     --sidebar-primary: 240 5.9% 10%;
-
     --sidebar-primary-foreground: 0 0% 98%;
-
     --sidebar-accent: 240 4.8% 95.9%;
-
     --sidebar-accent-foreground: 240 5.9% 10%;
-
     --sidebar-border: 220 13% 91%;
-
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
 
@@ -96,6 +90,29 @@
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-snips-dark text-foreground;
+  }
+}
+
+@layer components {
+  .card-button {
+    @apply relative bg-snips-card text-white px-8 py-6 rounded-lg border border-snips-border shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden;
+  }
+  
+  .card-button:after {
+    content: '';
+    @apply absolute inset-0 bg-white/5 opacity-0 transition-opacity duration-300;
+  }
+  
+  .card-button:hover:after {
+    @apply opacity-100;
+  }
+  
+  .browser-header {
+    @apply flex items-center gap-2 p-2 border-b border-snips-border;
+  }
+  
+  .browser-dot {
+    @apply w-3 h-3 rounded-full;
   }
 }
