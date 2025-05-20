@@ -9,7 +9,7 @@ const Index = () => {
   return (
     <div className="min-h-screen flex flex-col items-center justify-center px-4 py-10">
       <div className="text-xl md:text-2xl text-white mb-10 font-mono">
-        snips.dev &lt;docs&gt;
+        snips.dev &lt;home&gt;
       </div>
 
       {/* Browser window with logo */}
