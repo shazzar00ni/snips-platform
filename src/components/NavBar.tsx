@@ -8,7 +8,7 @@ const NavBar = () => {
     <div className="w-full border-b border-snips-border px-4 py-3 fixed top-0 z-50 bg-snips-dark/80 backdrop-blur-md">
       <div className="max-w-6xl mx-auto flex justify-between items-center">
         <Link to="/" className="text-xl font-mono text-white hover:text-snips-muted transition-colors">
-          snips.dev
+          &lt;snips.dev/&gt;
         </Link>
         
         <NavigationMenu>
