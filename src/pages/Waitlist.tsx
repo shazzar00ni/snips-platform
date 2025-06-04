@@ -1,5 +1,4 @@
-
-import React from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import BrowserHeader from '@/components/BrowserHeader';
 import WaitlistForm from '@/components/WaitlistForm';
@@ -8,10 +7,35 @@ import NavBar from '@/components/NavBar';
 import Footer from '@/components/Footer';
 
 const Waitlist = () => {
+  const [bgLoaded, setBgLoaded] = useState(false);
+  const bgRef = useRef<HTMLDivElement>(null);
+
+  // Placeholder for future background image
+  useEffect(() => {
+    // Uncomment and set image path to enable lazy background
+    // const observer = new window.IntersectionObserver((entries) => {
+    //   if (entries[0].isIntersecting) {
+    //     const img = new window.Image();
+    //     img.src = '/path/to/background.png';
+    //     img.onload = () => setBgLoaded(true);
+    //     observer.disconnect();
+    //   }
+    // }, { rootMargin: '200px' });
+    // if (bgRef.current) observer.observe(bgRef.current);
+    // return () => observer.disconnect();
+  }, []);
+
   return (
     <div className="min-h-screen flex flex-col">
       <NavBar />
-      <div className="flex-grow flex flex-col items-center justify-center px-4 py-10 mt-12 mb-6">
+      <div
+        ref={bgRef}
+        className="flex-grow flex flex-col items-center justify-center px-4 py-10 mt-12 mb-6 relative"
+        style={{
+          background: 'linear-gradient(120deg, #171717 60%, #23272f 100%)',
+          // ...(bgLoaded && { backgroundImage: "url('/path/to/background.png')", ... })
+        }}
+      >
         <div className="text-xl md:text-2xl text-white mb-10 font-mono">
           snips.dev &lt;waitlist&gt;
         </div>

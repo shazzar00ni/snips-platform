@@ -1,5 +1,4 @@
-
-import React from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import BrowserHeader from '@/components/BrowserHeader';
 import CardButton from '@/components/CardButton';
@@ -7,16 +6,40 @@ import NavBar from '@/components/NavBar';
 import Footer from '@/components/Footer';
 
 const Index = () => {
+  const [bgLoaded, setBgLoaded] = useState(false);
+  const bgRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const observer = new window.IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          const img = new window.Image();
+          img.src = '/lovable-uploads/60c63afe-0785-46d9-8dda-8a0347bd8836.png';
+          img.onload = () => setBgLoaded(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: '200px' }
+    );
+    if (bgRef.current) observer.observe(bgRef.current);
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <div className="min-h-screen flex flex-col">
       <NavBar />
       <div 
+        ref={bgRef}
         className="flex-grow flex flex-col items-center justify-center px-4 py-10 mt-12 mb-6 relative"
         style={{
-          backgroundImage: "url('/lovable-uploads/60c63afe-0785-46d9-8dda-8a0347bd8836.png')",
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          backgroundRepeat: "no-repeat",
+          background: 'linear-gradient(120deg, #171717 60%, #23272f 100%)',
+          ...(bgLoaded && {
+            backgroundImage: "url('/lovable-uploads/60c63afe-0785-46d9-8dda-8a0347bd8836.png')",
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            backgroundRepeat: 'no-repeat',
+            transition: 'background-image 0.6s cubic-bezier(.4,0,.2,1)',
+          })
         }}
       >
         {/* Transparent overlay */}
